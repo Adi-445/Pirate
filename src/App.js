@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import VideoCard from './components/VideoCard';
 
-// Enhanced video data with categories and metadata
+// Placeholder video data for development purposes
 const videoData = [
   {
     id: 1,
@@ -35,16 +35,44 @@ const videoData = [
   },
   {
     id: 3,
-    title: "Sample Video 3",
-    description: "Placeholder for additional content - demonstrates app scalability",
-    videoUrl: "placeholder",
-    thumbnailUrl: "https://via.placeholder.com/400x250/28a745/ffffff?text=Sample+3",
-    rating: "8.5/10",
-    status: "Coming Soon",
-    category: "Action",
-    genre: ["Action", "Thriller"],
-    duration: "120 min",
+    title: "Mufasa",
+    description: "Placeholder entry - Google Drive link redirects to blank page (development placeholder)",
+    videoUrl: "https://drive.google.com/file/d/1H41vVDXvYbbo1VdtlN6V83vCBXGKrtRA/view?usp=sharing",
+    thumbnailUrl: "https://via.placeholder.com/400x250/dc3545/ffffff?text=Mufasa",
+    rating: "8.0/10",
+    status: "Placeholder",
+    category: "Animation",
+    genre: ["Adventure", "Family", "Drama"],
+    duration: "118 min",
     year: "2024",
+    quality: "HD"
+  },
+  {
+    id: 4,
+    title: "Miss Peregrine's Home For Peculiar Children",
+    description: "Placeholder entry - Google Drive link redirects to blank page (development placeholder)",
+    videoUrl: "https://drive.google.com/file/d/1-RXy0cD-xZy8vTB86s0z5a1-tV43MM8o/view?usp=sharing",
+    thumbnailUrl: "https://via.placeholder.com/400x250/6f42c1/ffffff?text=Miss+Peregrine",
+    rating: "7.8/10",
+    status: "Placeholder",
+    category: "Fantasy",
+    genre: ["Fantasy", "Adventure", "Family"],
+    duration: "127 min",
+    year: "2016",
+    quality: "HD"
+  },
+  {
+    id: 5,
+    title: "Godzilla vs Kong",
+    description: "Placeholder entry - Google Drive link redirects to blank page (development placeholder)",
+    videoUrl: "https://drive.google.com/file/d/1-YrLGLyF0r5ehu5OXcbLt8RHt4_9_ajo/view?usp=sharing",
+    thumbnailUrl: "https://via.placeholder.com/400x250/fd7e14/ffffff?text=Godzilla+vs+Kong",
+    rating: "8.3/10",
+    status: "Placeholder",
+    category: "Action",
+    genre: ["Action", "Sci-Fi", "Thriller"],
+    duration: "113 min",
+    year: "2021",
     quality: "4K"
   }
 ];
