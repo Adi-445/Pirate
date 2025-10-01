@@ -37,8 +37,7 @@ function App() {
         </header>
 
         <div className="placeholder-notice">
-          <strong>📝 Setup Notice:</strong> Video placeholders created for "mfasa" and "lokah". 
-          Replace the placeholder URLs with actual Google Drive links to enable playback and downloads.
+          <strong>📝 Setup Notice:</strong> "mufasa" still needs Google Drive link. "Lokah Chapter 1: Chandra" is ready for playback and download!
         </div>
 
         <div className="video-grid">
