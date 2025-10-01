@@ -88,7 +88,7 @@ function App() {
           <p>Stream and Download Your Favorite Videos</p>
           <div className="header-stats">
             <span className="stat">📊 {videos.length} Videos</span>
-            <span className="stat">🎭 3 Categories</span>
+            <span className="stat">🎭 5 Categories</span>
             <span className="stat">⭐ Premium Quality</span>
           </div>
         </header>
