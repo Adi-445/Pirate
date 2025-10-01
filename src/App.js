@@ -6,10 +6,10 @@ import VideoCard from './components/VideoCard';
 const videoData = [
   {
     id: 1,
-    title: "Mufasa",
+    title: "Paddington in Peru",
     description: "Available via Terabox streaming",
     videoUrl: "https://1024terabox.com/s/1Pn27hHcL-otcIXe8etP8-Q",
-    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=Mufasa",
+    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=Paddington+in+Peru",
     rating: null,
     status: "Available"
   },
