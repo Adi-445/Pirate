@@ -80,6 +80,13 @@ const VideoCard = ({ video }) => {
         <h3 className="video-title">{video.title}</h3>
         <p className="video-description">{video.description}</p>
         
+        {(video.rating || video.status) && (
+          <div className="video-metadata">
+            {video.rating && <span className="rating">⭐ {video.rating}</span>}
+            {video.status && <span className="status">📺 {video.status}</span>}
+          </div>
+        )}
+        
         <div className="video-actions">
           <button 
             className="btn btn-primary" 
