@@ -51,48 +51,6 @@ const videoData = [
 
 function App() {
   const [videos] = useState(videoData);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [sortBy, setSortBy] = useState('title');
-  const [viewMode, setViewMode] = useState('grid');
-  const [loading, setLoading] = useState(false);
-
-  // Get unique categories
-  const categories = ['All', ...new Set(videos.map(video => video.category))];
-
-  // Filter and sort videos
-  const filteredVideos = useMemo(() => {
-    let filtered = videos.filter(video => {
-      const matchesSearch = video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           video.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           video.genre.some(g => g.toLowerCase().includes(searchTerm.toLowerCase()));
-      const matchesCategory = selectedCategory === 'All' || video.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-
-    // Sort videos
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'rating':
-          return parseFloat(b.rating) - parseFloat(a.rating);
-        case 'year':
-          return b.year - a.year;
-        case 'duration':
-          return parseInt(b.duration) - parseInt(a.duration);
-        default:
-          return a.title.localeCompare(b.title);
-      }
-    });
-
-    return filtered;
-  }, [videos, searchTerm, selectedCategory, sortBy]);
-
-  const handleSearch = (term) => {
-    setLoading(true);
-    setSearchTerm(term);
-    // Simulate search delay
-    setTimeout(() => setLoading(false), 300);
-  };
 
   return (
     <div className="App">
@@ -102,44 +60,22 @@ function App() {
           <p>Stream and Download Your Favorite Videos</p>
           <div className="header-stats">
             <span className="stat">📊 {videos.length} Videos</span>
-            <span className="stat">🎭 {categories.length - 1} Categories</span>
+            <span className="stat">🎭 3 Categories</span>
             <span className="stat">⭐ Premium Quality</span>
           </div>
         </header>
 
-        <SearchBar onSearch={handleSearch} searchTerm={searchTerm} />
-        
-        <FilterBar 
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
-          totalResults={filteredVideos.length}
-        />
+        <div className="video-grid">
+          {videos.map(video => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </div>
 
-        {loading ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <p>Searching videos...</p>
+        {videos.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '3rem', color: '#666' }}>
+            <h3>No videos available</h3>
+            <p>Add some videos to get started!</p>
           </div>
-        ) : (
-          <>
-            <div className={`video-grid ${viewMode === 'list' ? 'list-view' : ''}`}>
-              {filteredVideos.map(video => (
-                <VideoCard key={video.id} video={video} viewMode={viewMode} />
-              ))}
-            </div>
-
-            {filteredVideos.length === 0 && (
-              <div className="no-results">
-                <h3>🔍 No videos found</h3>
-                <p>Try adjusting your search terms or filters</p>
-              </div>
-            )}
-          </>
         )}
       </div>
     </div>
