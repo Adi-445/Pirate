@@ -109,61 +109,8 @@ const VideoCard = ({ video }) => {
 
   const isPlaceholder = video.videoUrl === 'placeholder';
 
-  if (viewMode === 'list') {
-    return (
-      <div className="video-card list-card">
-        <div className="list-thumbnail">
-          <img 
-            src={video.thumbnailUrl || `https://via.placeholder.com/150x100/667eea/ffffff?text=${encodeURIComponent(video.title)}`}
-            alt={video.title}
-            className="list-image"
-          />
-          {video.quality && <span className="quality-badge">{video.quality}</span>}
-        </div>
-        
-        <div className="list-content">
-          <div className="list-info">
-            <h3 className="video-title">{video.title}</h3>
-            <p className="video-description">{video.description}</p>
-            
-            <div className="list-metadata">
-              <span className="metadata-item">🎭 {video.category}</span>
-              <span className="metadata-item">🕒 {video.duration}</span>
-              <span className="metadata-item">📅 {video.year}</span>
-              {video.rating && <span className="metadata-item">⭐ {video.rating}</span>}
-            </div>
-            
-            <div className="genre-tags">
-              {video.genre.map(genre => (
-                <span key={genre} className="genre-tag">{genre}</span>
-              ))}
-            </div>
-          </div>
-          
-          <div className="list-actions">
-            <button 
-              className="btn btn-primary compact" 
-              onClick={handlePlay}
-              disabled={isPlaceholder}
-            >
-              {isPlaceholder ? '⏸️' : 
-               detectPlatform(video.videoUrl).platform === 'terabox' ? '🌐' : '▶️'}
-            </button>
-            <button 
-              className="btn btn-secondary compact" 
-              onClick={handleDownload}
-              disabled={isPlaceholder}
-            >
-              {isPlaceholder ? '📁' : '⬇️'}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="video-card grid-card">
+    <div className="video-card">
       {showPlayer && !isPlaceholder ? (
         <VideoPlayer 
           videoUrl={video.videoUrl} 
@@ -194,10 +141,10 @@ const VideoCard = ({ video }) => {
         </div>
         
         <div className="genre-tags">
-          {video.genre.slice(0, 2).map(genre => (
+          {video.genre && video.genre.slice(0, 2).map(genre => (
             <span key={genre} className="genre-tag">{genre}</span>
           ))}
-          {video.genre.length > 2 && <span className="genre-tag">+{video.genre.length - 2}</span>}
+          {video.genre && video.genre.length > 2 && <span className="genre-tag">+{video.genre.length - 2}</span>}
         </div>
         
         <div className="video-actions">
