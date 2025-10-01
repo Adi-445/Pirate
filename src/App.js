@@ -1,8 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import VideoCard from './components/VideoCard';
-import SearchBar from './components/SearchBar';
-import FilterBar from './components/FilterBar';
 
 // Enhanced video data with categories and metadata
 const videoData = [
