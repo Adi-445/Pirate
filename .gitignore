@@ -49,3 +49,7 @@ static_server.log-e
 # Environment files
 *.env
 *.env.*
+-e 
+# Environment files
+*.env
+*.env.*
