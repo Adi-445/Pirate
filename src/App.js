@@ -37,7 +37,7 @@ function App() {
         </header>
 
         <div className="placeholder-notice">
-          <strong>📝 Setup Notice:</strong> "mufasa" still needs Google Drive link. "Lokah Chapter 1: Chandra" is ready for playback and download!
+          <strong>📝 Archive Status:</strong> Both videos are now available! "Mufasa" via Terabox and "Lokah Chapter 1: Chandra" via Google Drive.
         </div>
 
         <div className="video-grid">
