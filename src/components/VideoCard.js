@@ -143,7 +143,8 @@ const VideoCard = ({ video }) => {
             onClick={handlePlay}
             disabled={isPlaceholder}
           >
-            {isPlaceholder ? '⏸️ Placeholder' : '▶️ Play'}
+            {isPlaceholder ? '⏸️ Placeholder' : 
+             detectPlatform(video.videoUrl).platform === 'terabox' ? '🌐 Open' : '▶️ Play'}
           </button>
           <button 
             className="btn btn-secondary" 
