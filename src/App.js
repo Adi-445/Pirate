@@ -6,12 +6,12 @@ import VideoCard from './components/VideoCard';
 const videoData = [
   {
     id: 1,
-    title: "mufasa",
-    description: "Placeholder video - Google Drive link will be added soon",
-    videoUrl: "placeholder", // Will be replaced with Google Drive link
-    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=mufasa",
+    title: "Mufasa",
+    description: "Available via Terabox streaming",
+    videoUrl: "https://1024terabox.com/s/1Pn27hHcL-otcIXe8etP8-Q",
+    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=Mufasa",
     rating: null,
-    status: null
+    status: "Available"
   },
   {
     id: 2,
