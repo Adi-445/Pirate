@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './App.css';
 import VideoCard from './components/VideoCard';
+import SearchBar from './components/SearchBar';
+import FilterBar from './components/FilterBar';
 
 // Video data with Google Drive links
 const videoData = [
