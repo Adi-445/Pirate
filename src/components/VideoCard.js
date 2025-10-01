@@ -109,8 +109,61 @@ const VideoCard = ({ video, viewMode = 'grid' }) => {
 
   const isPlaceholder = video.videoUrl === 'placeholder';
 
+  if (viewMode === 'list') {
+    return (
+      <div className="video-card list-card">
+        <div className="list-thumbnail">
+          <img 
+            src={video.thumbnailUrl || `https://via.placeholder.com/150x100/667eea/ffffff?text=${encodeURIComponent(video.title)}`}
+            alt={video.title}
+            className="list-image"
+          />
+          {video.quality && <span className="quality-badge">{video.quality}</span>}
+        </div>
+        
+        <div className="list-content">
+          <div className="list-info">
+            <h3 className="video-title">{video.title}</h3>
+            <p className="video-description">{video.description}</p>
+            
+            <div className="list-metadata">
+              <span className="metadata-item">🎭 {video.category}</span>
+              <span className="metadata-item">🕒 {video.duration}</span>
+              <span className="metadata-item">📅 {video.year}</span>
+              {video.rating && <span className="metadata-item">⭐ {video.rating}</span>}
+            </div>
+            
+            <div className="genre-tags">
+              {video.genre.map(genre => (
+                <span key={genre} className="genre-tag">{genre}</span>
+              ))}
+            </div>
+          </div>
+          
+          <div className="list-actions">
+            <button 
+              className="btn btn-primary compact" 
+              onClick={handlePlay}
+              disabled={isPlaceholder}
+            >
+              {isPlaceholder ? '⏸️' : 
+               detectPlatform(video.videoUrl).platform === 'terabox' ? '🌐' : '▶️'}
+            </button>
+            <button 
+              className="btn btn-secondary compact" 
+              onClick={handleDownload}
+              disabled={isPlaceholder}
+            >
+              {isPlaceholder ? '📁' : '⬇️'}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="video-card">
+    <div className="video-card grid-card">
       {showPlayer && !isPlaceholder ? (
         <VideoPlayer 
           videoUrl={video.videoUrl} 
@@ -123,6 +176,10 @@ const VideoCard = ({ video, viewMode = 'grid' }) => {
             alt={video.title}
             className="video-player"
           />
+          <div className="thumbnail-overlay">
+            {video.quality && <span className="quality-badge">{video.quality}</span>}
+            {video.duration && <span className="duration-badge">{video.duration}</span>}
+          </div>
         </div>
       )}
       
@@ -130,12 +187,18 @@ const VideoCard = ({ video, viewMode = 'grid' }) => {
         <h3 className="video-title">{video.title}</h3>
         <p className="video-description">{video.description}</p>
         
-        {(video.rating || video.status) && (
-          <div className="video-metadata">
-            {video.rating && <span className="rating">⭐ {video.rating}</span>}
-            {video.status && <span className="status">📺 {video.status}</span>}
-          </div>
-        )}
+        <div className="video-metadata">
+          {video.rating && <span className="rating">⭐ {video.rating}</span>}
+          {video.status && <span className="status">📺 {video.status}</span>}
+          {video.category && <span className="category">🎭 {video.category}</span>}
+        </div>
+        
+        <div className="genre-tags">
+          {video.genre.slice(0, 2).map(genre => (
+            <span key={genre} className="genre-tag">{genre}</span>
+          ))}
+          {video.genre.length > 2 && <span className="genre-tag">+{video.genre.length - 2}</span>}
+        </div>
         
         <div className="video-actions">
           <button 
@@ -156,15 +219,8 @@ const VideoCard = ({ video, viewMode = 'grid' }) => {
         </div>
         
         {isPlaceholder && (
-          <div style={{ 
-            marginTop: '1rem', 
-            padding: '0.5rem', 
-            background: '#f8f9fa', 
-            borderRadius: '4px', 
-            fontSize: '0.8rem', 
-            color: '#666' 
-          }}>
-            💡 Replace with Google Drive share link
+          <div className="placeholder-hint">
+            💡 Add video link to enable playback
           </div>
         )}
       </div>
