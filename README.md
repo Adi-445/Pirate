@@ -52,21 +52,29 @@ const videoData = [
 
 ## Deployment to GitHub Pages
 
-1. **Install gh-pages** (already included):
+### Method 1: Direct Deployment (Recommended)
+The HTML files are already in the root directory for GitHub Pages:
+
+1. **Push to GitHub** using Emergent's "Save to GitHub" feature
+2. **Enable GitHub Pages**:
+   - Go to your repository Settings → Pages
+   - Select "Deploy from a branch"
+   - Choose "main" branch → "/ (root)"
+   - Click Save
+
+### Method 2: Build and Deploy
+If you make changes to the React source:
+
+1. **Rebuild**:
    ```bash
-   npm install --save-dev gh-pages
+   npm run build
+   cp -r build/* .
    ```
 
-2. **Deploy**:
+2. **Deploy using gh-pages**:
    ```bash
    npm run deploy
    ```
-
-3. **Enable GitHub Pages**:
-   - Go to your repository Settings
-   - Scroll to Pages section
-   - Select "Deploy from a branch"
-   - Choose "gh-pages" branch
 
 Your app will be available at: `https://yourusername.github.io/your-repo-name`
 
