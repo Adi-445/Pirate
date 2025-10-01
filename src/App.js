@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import './App.css';
 import VideoCard from './components/VideoCard';
 
-// Placeholder video data - will be replaced with Google Drive links
+// Video data with Google Drive links
 const videoData = [
   {
     id: 1,
-    title: "mfasa",
+    title: "mufasa",
     description: "Placeholder video - Google Drive link will be added soon",
     videoUrl: "placeholder", // Will be replaced with Google Drive link
-    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=mfasa"
+    thumbnailUrl: "https://via.placeholder.com/400x250/667eea/ffffff?text=mufasa",
+    rating: null,
+    status: null
   },
   {
     id: 2,
-    title: "lokah", 
-    description: "Placeholder video - Google Drive link will be added soon",
-    videoUrl: "placeholder", // Will be replaced with Google Drive link
-    thumbnailUrl: "https://via.placeholder.com/400x250/764ba2/ffffff?text=lokah"
+    title: "Lokah Chapter 1: Chandra", 
+    description: "Rating: 7.4/10 | Status: Ongoing Release",
+    videoUrl: "https://drive.google.com/file/d/1r2wCFi2sG2pwmAJ64olBwZ2ehQko7THH/",
+    downloadUrl: "https://drive.usercontent.google.com/download?id=1r2wCFi2sG2pwmAJ64olBwZ2ehQko7THH",
+    thumbnailUrl: "https://via.placeholder.com/400x250/764ba2/ffffff?text=Lokah+Ch1",
+    rating: "7.4/10",
+    status: "Ongoing Release"
   }
 ];
 
