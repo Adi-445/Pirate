@@ -93,10 +93,17 @@ const VideoCard = ({ video }) => {
   };
 
   const handlePlay = () => {
-    if (video.videoUrl !== 'placeholder') {
-      setShowPlayer(true);
+    const { platform } = detectPlatform(video.videoUrl);
+    
+    if (platform && platform !== null) {
+      if (platform === 'terabox') {
+        // Terabox has limited embed support, open in new tab
+        window.open(video.videoUrl, '_blank');
+      } else {
+        setShowPlayer(true);
+      }
     } else {
-      alert('Video not available - Please add a valid Google Drive link');
+      alert('Video not available - Please add a valid video link');
     }
   };
 
