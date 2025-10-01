@@ -16,13 +16,43 @@ const VideoPlayer = ({ videoUrl, onClose }) => {
     return null;
   };
 
-  const getEmbedUrl = (url) => {
-    const fileId = extractGoogleDriveId(url);
-    if (fileId) {
-      return `https://drive.google.com/file/d/${fileId}/preview`;
+  // Detect platform and generate embed URL
+  const detectPlatform = (url) => {
+    if (!url) return { platform: null, id: null };
+    
+    // Google Drive patterns
+    const drivePatterns = [
+      /\/file\/d\/([a-zA-Z0-9-_]+)/,
+      /id=([a-zA-Z0-9-_]+)/,
+      /\/d\/([a-zA-Z0-9-_]+)/
+    ];
+    
+    for (let pattern of drivePatterns) {
+      const match = url.match(pattern);
+      if (match) return { platform: 'gdrive', id: match[1] };
     }
-    // Fallback for direct video URLs
-    return url;
+    
+    if (url.includes('dropbox.com')) return { platform: 'dropbox', id: url };
+    if (url.includes('terabox.com')) return { platform: 'terabox', id: url };
+    
+    return { platform: 'direct', id: url };
+  };
+
+  const getEmbedUrl = (url) => {
+    const { platform, id } = detectPlatform(url);
+    
+    switch (platform) {
+      case 'gdrive':
+        return `https://drive.google.com/file/d/${id}/preview`;
+      case 'dropbox':
+        return url.replace('?dl=0', '?raw=1');
+      case 'terabox':
+        return url; // Limited embed support
+      case 'direct':
+        return url;
+      default:
+        return url;
+    }
   };
 
   const embedUrl = getEmbedUrl(videoUrl);
