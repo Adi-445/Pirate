@@ -23,6 +23,11 @@ const VideoCard = ({ video }) => {
 
   // Generate Google Drive direct download link
   const getDownloadLink = (url) => {
+    // Use custom download URL if provided
+    if (video.downloadUrl) {
+      return video.downloadUrl;
+    }
+    
     const fileId = extractGoogleDriveId(url);
     if (!fileId) return null;
     return `https://drive.google.com/uc?export=download&id=${fileId}`;
