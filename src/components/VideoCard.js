@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import VideoPlayer from './VideoPlayer';
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, viewMode = 'grid' }) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
   // Detect video platform and extract necessary info
