@@ -37,7 +37,7 @@ function App() {
         </header>
 
         <div className="placeholder-notice">
-          <strong>📝 Archive Status:</strong> Both videos are now available! "Mufasa" via Terabox and "Lokah Chapter 1: Chandra" via Google Drive.
+          <strong>📝 Archive Status:</strong> Both videos are now available! "Paddington in Peru" via Terabox and "Lokah Chapter 1: Chandra" via Google Drive.
         </div>
 
         <div className="video-grid">
