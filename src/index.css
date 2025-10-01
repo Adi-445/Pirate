@@ -70,7 +70,30 @@ body {
 .video-description {
   color: #666;
   line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.video-metadata {
+  display: flex;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.rating {
+  background: #fff3cd;
+  color: #856404;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status {
+  background: #d1ecf1;
+  color: #0c5460;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 .video-actions {
