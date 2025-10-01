@@ -4,21 +4,38 @@ import VideoPlayer from './VideoPlayer';
 const VideoCard = ({ video }) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
-  // Extract Google Drive file ID from various URL formats
-  const extractGoogleDriveId = (url) => {
-    if (!url || url === 'placeholder') return null;
+  // Detect video platform and extract necessary info
+  const detectPlatform = (url) => {
+    if (!url || url === 'placeholder') return { platform: null, id: null };
     
-    const patterns = [
+    // Google Drive patterns
+    const drivePatterns = [
       /\/file\/d\/([a-zA-Z0-9-_]+)/,  // /file/d/ID
       /id=([a-zA-Z0-9-_]+)/,         // ?id=ID
       /\/d\/([a-zA-Z0-9-_]+)/        // /d/ID
     ];
     
-    for (let pattern of patterns) {
+    for (let pattern of drivePatterns) {
       const match = url.match(pattern);
-      if (match) return match[1];
+      if (match) return { platform: 'gdrive', id: match[1] };
     }
-    return null;
+    
+    // Dropbox patterns
+    if (url.includes('dropbox.com')) {
+      return { platform: 'dropbox', id: url };
+    }
+    
+    // Terabox patterns
+    if (url.includes('terabox.com') || url.includes('1024terabox.com')) {
+      return { platform: 'terabox', id: url };
+    }
+    
+    // Direct video URLs
+    if (url.match(/\.(mp4|webm|ogg|avi|mov)(\?.*)?$/i)) {
+      return { platform: 'direct', id: url };
+    }
+    
+    return { platform: 'unknown', id: url };
   };
 
   // Generate Google Drive direct download link
