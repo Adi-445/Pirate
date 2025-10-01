@@ -38,23 +38,49 @@ const VideoCard = ({ video }) => {
     return { platform: 'unknown', id: url };
   };
 
-  // Generate Google Drive direct download link
+  // Generate download link based on platform
   const getDownloadLink = (url) => {
     // Use custom download URL if provided
     if (video.downloadUrl) {
       return video.downloadUrl;
     }
     
-    const fileId = extractGoogleDriveId(url);
-    if (!fileId) return null;
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+    const { platform, id } = detectPlatform(url);
+    
+    switch (platform) {
+      case 'gdrive':
+        return `https://drive.google.com/uc?export=download&id=${id}`;
+      case 'dropbox':
+        // Convert Dropbox share link to direct download
+        return url.replace('dropbox.com', 'dl.dropboxusercontent.com').replace('?dl=0', '');
+      case 'terabox':
+        // Terabox direct download (limited functionality)
+        return url;
+      case 'direct':
+        return url;
+      default:
+        return null;
+    }
   };
 
-  // Generate Google Drive streaming link
+  // Generate streaming link based on platform
   const getStreamLink = (url) => {
-    const fileId = extractGoogleDriveId(url);
-    if (!fileId) return null;
-    return `https://drive.google.com/file/d/${fileId}/preview`;
+    const { platform, id } = detectPlatform(url);
+    
+    switch (platform) {
+      case 'gdrive':
+        return `https://drive.google.com/file/d/${id}/preview`;
+      case 'dropbox':
+        // Dropbox embedded player
+        return url.replace('?dl=0', '?raw=1');
+      case 'terabox':
+        // Terabox has limited embed support
+        return url;
+      case 'direct':
+        return url;
+      default:
+        return url;
+    }
   };
 
   const handleDownload = () => {
